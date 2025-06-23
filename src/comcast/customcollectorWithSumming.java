@@ -36,6 +36,5 @@ public class customcollectorWithSumming {
 			System.out.println(salaryByDept);
 			System.out.println(salaryBydepartment);
 	}
-
 	
 }

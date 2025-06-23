@@ -1,0 +1,1240 @@
+1)why string is immutable, and string buffer is mutable?-StringBuffer methods are synchronized, making it thread-safe. This means that multiple threads can safely modify a StringBuffer instance without causing data corruption.
+1.oracle jdk vs open jdk
+1.7 layers of OSI
+1.transaction managenent in SQL
+1.dead lock in sql
+1.map data structure implementation useing ArrayList
+1.custom hooks
+1.dead locks in Java  - 
+1.java pointers vs c pointers
+1.Types of protocals http,mtls,htpps
+1.SSL handshake
+1.securtity implementation in microservice.
+2)jdk,jre, jvm, jit
+3)method overriding ,overloading
+ststic method in interface--- no need to create instance, and cannot overiden by implmenting class
+default in interface- provide default implemntation if needed,Default methods allow adding new methods to interfaces without breaking the existing implementations of those interfaces.
+4)Runtime polymorphism or dynamic method dispatch  // method overiding
+4)static polymorphism //method overloading
+5)comparable vs comparator
+6)open session and current session--hibernate
+ The client application can interact with the database using this session, to perform various operations such as saving, updating, deleting, and querying data. 
+
+ the session that is currently active and being used by the client application. The current session is typically managed by a session factory and is created and closed by the application as needed.
+ The current session stores the state of all managed entities and tracks any changes made to them during the transaction.
+
+When a session is no longer needed, it can be closed to free up resources and release any database locks it may hold. Hibernate allows for efficient session management and provides mechanisms for maintaining open and current sessions throughout the application lifecycle.
+7)singleton pater(code)
+8)spring boot crud operation*******java -jar your-application.jar -Dspring.profiles.active=local
+javac YourJavaFileName.java
+java flilename
+
+9)how can u segregate config wise file//// how to use 2 different databses
+spring.profiles.active=dev
+
+#--- dev profile ---#
+spring.config.activate.on-profile=dev
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/db
+spring.datasource.username=root
+spring.datasource.password=password
+
+
+@profile("dev")
+@Configuration
+public class{}
+
+10)indexing in sql
+
+Indexing in SQL is a technique used to improve the performance of database queries by allowing faster retrieval of data. 
+It involves creating an index on one or more columns of a table, which helps the database engine quickly locate the rows that satisfy a certain condition in a query.
+Facilitating joins: Indexes can be used to speed up join operations between tables by allowing the database engine to quickly find matching rows based on the join condition.
+CREATE INDEX idx_last_name ON employees(last_name);
+select last_name from employee
+
+110junit/mockito
+@test
+@before
+@After
+@beforeClass   before excuting classcheck 
+
+
+assertEquals(Expected,Actual);
+assertTrue(boolean condition)
+assertFalse
+assertNull
+assertNotNull
+\
+
+@Test
+Mockito.mock(AddService.class);
+when(addService.add(num1, num2)).thenReturn(expected);
+assertEquals(expected, actual);
+
+12)how will resolve conflicts when we commit /merge in git -
+***************git log --merge ,git diff , git checkout ,git reset --soft: Only resets the HEAD,git reset --mixed  resets head(git) and staging area,git reset --hard resets head, staging area, working directory
+
+1.git diff, take backup, find the conflicted files, <<<<->>> reslve conflts, save and commit
+
+
+git merge --abort                                   abort the merging
+git reset                                           this command undoes the changes made 
+git init                                           # Initialize a new Git repository
+git clone <repository-url>    '
+git status                                         # Check the status of the working directory and staging area
+git add <file>                                     # Add a file to the staging area
+git add .                                          # Add all files to the staging area
+git commit -m "Commit message"                     # Commit changes with a message
+git push                                           # Push commits to the remote repository
+git pull        Fetch and merge changes from the remote repository
+git branch                                         # List all branches
+git branch <branch-name>                           # Create a new branch
+git checkout <branch-name>                         # Switch to a branch
+git checkout -b <branch-name>                      # Create and switch to a new branch
+git branch -d <branch-name>                        # Delete a branch
+git branch -D <branch-name>      
+git merge <branch-name>                            # Merge a branch into the current branch
+git merge --no-ff <branch-name>    
+git stash
+git clean
+git log
+git diff
+
+
+
+13)max salary query
+
+select MAX(salary)as salary  from employee;
+
+14)4 th maximum salary
+
+select MAX(slaary) as salary from employee Order By salary Desc Limit 1 Offset 3 Rows;
+
+15)how to secure rest api in spring boot
+
+16)iterator / list iterator
+
+ allows you to iterate over collections such as lists, maps, and sets.
+ 
+ A ListIterator in Java can be used to iterate over elements in a List in both forward and backward directions. A real-time example of using a ListIterator would be in a shopping cart application where you need to iterate over a list of items in the cart both forwards and backwards.
+ 
+
+
+17)interface/inheritance
+interface must be  implement , allow polymorphism hwlps it shared by different resources.
+ inheritanse is- a , subclass inherit property of supercalss
+
+
+
+18)what if we not close properly finally block
+If we do not close the finally block properly, it may result in the resources not being properly released or the cleanup code not being executed as expected. 
+This could lead to memory leaks, resource leaks, or other unexpected behavior in the program
+
+19)bean scope in spring boot
+Singleton: This is the default scope in Spring Boot. A singleton bean is created only once per Spring IoC container and is shared by all dependent beans.
+
+Prototype: A prototype bean is created each time it is requested. This means that a new instance of the bean is created by copying excisting object every time it is injected or looked up.
+
+Request: A request scope bean is created for each HTTP request. This means that a new instance is created for every HTTP request and is available only for the duration of that request.
+
+Session: A session scope bean is created for each HTTP session. This means that a new instance is created for each user session and is available for the entire duration of that session.
+
+Global Session: This scope is similar to the session scope, but it is used in the context of a Portlet environment where the session is shared among multiple portlets.
+
+
+20)how to handle exeption in spring boot
+
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return ex.getMessage();
+    }
+	
+	@Restcontrollers advice
+
+
+21)sql vs hql
+
+SQL stands for Structured Query Language and is a standard language used for managing and querying relational databases.
+ HQL, on the other hand, stands for Hibernate Query Language and is a query language specifically used with the Hibernate ORM framework for mapping Java objects to database tables.
+ 
+ 
+22)how to mapping dataabase and java 
+Mapping database to Java involves creating a connection between the database and the Java application by using an Object Relational Mapping (ORM) tool.
+1.define To entity class with fields
+2.choose orm tool like jpa or hibernate
+config 
+write crud
+
+23)transaction managment in hibernate
+
+begin the transaction = beginTransaction()
+Commit -- commit() the update changes to db
+rollback-- if any error roll back the changes rollback()
+detached
+Exception handling -------Transaction management involves handling exceptions that may occur during the execution of database operations.
+Hibernate provides mechanisms for handling exceptions, such as catching and logging exceptions, rolling back transactions, and gracefully handling errors to ensure data integrity and consistency.
+
+
+24)constructor overloading
+constructor iwth same name but different paramters -- havaa multiple constructor same as mehtod overloading
+
+25)Strictfpkeyword = strict floating-point
+It is used in Java for restricting floating-point calculations and ensuring the same result on every platform(16/32/64) while performing operations in the floating-point variable. 
+
+26)jvm - 
+JVM (Java Virtual Machine) is the virtual machine that allows Java bytecode to run on multiple platforms by converting it into machine code.  
+
+JRE (Java Runtime Environment) includes the JVM, Java class libraries, and other supporting files needed for running Java applications.
+
+JDK (Java Development Kit) is a software development kit that provides tools and libraries to develop Java applications. It includes the JRE as well as compilers, debuggers, and other development tools.
+compilers, debuggers, and other development tools + JRE
+
+just in time --
+
+A Just-In-Time (JIT) compiler is a type of compiler that compiles code at runtime, just before it is executed. This allows the compiler to optimize the code based on the specific environment it is running in, such as the processor architecture, available memory, and other factors.
+ JIT compilers are commonly used in environments like Java and .NET, where code is compiled into an intermediate form (bytecode) and then compiled to machine code at runtime for improved performance.
+
+
+27)instanceof  //system.out.println(object instanceof GFG);
+                                           //keyword  //class-referance
+
+27) backward compatilabilty in java is achieved using default method
+28)git v+commands
+
+29)Treadpool - Executors.newFixedThreadPool(int size);  executor.execute() ;   executor.shutdown();
+* A thread pool reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
+* Java provides its own multi-threading framework called the Java Executor Framework.
+Java executor framework (java.util.concurrent.Executor), released with the JDK 5 is used to run the Runnable objects without creating new threads every time and mostly re-using the already created threads.
+
+30)why wait(),notify() in object class
+
+
+31)what is stack space
+Stack space is a region of memory used by a computer program to store local variables, function parameters, return addresses, and other information related to function calls and control flow.
+Because stack space is limited and shared among all functions in a program, it is important for developers to manage stack usage carefully to avoid running out of memory or causing a stack overflow.
+
+32)what is copy on write arraylist?give example
+Copy on write ArrayList is a type of ArrayList in which a new copy of the array is created whenever a modification operation is performed (such as adding or removing elements), 
+ensuring that the original array remains unaffected. This is useful in scenarios where the list is frequently read but rarely modified.
+
+
+what are ordered and unordered collections
+ Ordered Collection is the one in which the position of each element is fixed. Unordered Collection is the one in which position of each element is not fixed 
+
+
+fail fast and fails safe iterators
+Fail-fast  immediately throw a ConcurrentModificationException if the collection is modified while iterating over it. This is a safety mechanism to prevent concurrent modification of the collection and to ensure the integrity of the iteration. Fail-fast behavior is achieved by using an internal flag to detect any modification of the collection during iteration.
+
+Fail-safe iterators do not throw ConcurrentModificationException when the collection is modified during iteration. Instead, they make a copy of the collection before iterating over it, so any modifications to the original collection do not affect the iteration. This allows for safe and consistent iteration even when the collection is modified concurrently.
+
+what are thread priorities
+
+what are thread methods?
+
+yield()- A hint to the scheduler that the current thread is willing to yield its current use of a processor
+run()  - 
+
+explain try catch. how many try catch and final  blocks we can have
+
+
+save vs persist vs save(or)update
+Save: The save method is used to save a new entity to the database.
+Persist: The persist method is similar to the save method, but it is used for transient entitie// A transient entity is a regular entity but with a expiration timestamp
+SaveOrUpdate: The saveOrUpdate method is used to either save a new entity or update an existing entity in the database. 
+
+clone not supported exception - clone realted
+A CloneNotSupportedException is thrown when an object does not support being cloned. This typically occurs when the clone() method is called on an object that does not implement the Cloneable interface.
+
+To avoid this exception, you can handle it by either implementing the Cloneable interface in your class or by catching the CloneNotSupportedException and handling it appropriately in your code. Alternatively, you can use a different approach for creating copies of objects, such as using copy constructors or serialization.
+
+
+stack overflow exception3 - StackOverflowError is an error which Java doesn’t allow to catch, for instance, stack running out of space, as it’s one of the most common runtime errors one can encounter. It happens when loop or recursive function does not haveproper exit statement
+
+run springboot application cmd
+mvn spring-boot:run
+java -jar <name-of-jar-file>.jar
+
+
+garbage collector in 1.8 (default or version has to set)- parallel Garbage collector is used as default
+
+how to retrieve data from database(hibernate)
+Session session = sessionFactory.openSession();
+Criteria criteria = session.createCriteria(Employee.class);
+List<Employee> employees = criteria.list();
+
+for(Employee employee : employees) {
+    System.out.println(employee.getName());
+}
+
+session.close();
+
+Client - debugging process
+Spring vs spring mvc vs springboot
+Actuator(monitoring,health)--how implementing, how works
+
+restful service, why rest api is stateless - Representational “State” TransferHQl vs jql vs sql
+Each request from the client to server must contain all the information needed to process that request and that information cannot be stored at the server side for any future reference. This restriction is called Statelessness.
+
+
+
+cascade types
+ALL: This cascade type is the most powerful as it includes all possible cascade operations.
+PERSIST: This cascade type propagates the persist operation from a parent entity to its associated child entities.44
+MERGE: This cascade type propagates the merge operation from a parent entity to its associated child entities.
+REMOVE: This cascade type propagates the remove operation from a parent entity to its associated child entities.
+REFRESH: This cascade type propagates the refresh operation from a parent entity to its associated child entities.
+DETACH: This cascade type propagates the detach operation from a parent entity to its associated child entities.
+
+junit unit steps
+mockito steps
+how to tesgt using postman , steps
+Create a new request: Click on the "New" button in the top left corner to create a new request. Select the type of request you want to test (e.g. GET, POST, PUT, DELETE).
+Enter the request URL: Enter the URL of the API endpoint you want to test in the address bar at the top of the request tab.
+Add headers and body parameters: If necessary, add any headers or body parameters required for the request. You can do this by clicking on the Headers or Body tab in the request tab.
+
+Send the request: Click on the "Send" button to send the request to the API endpoint.
+
+View the response: Once the request has been sent, you will see the response from the API endpoint in the response tab below the request tab. This will include information such as the status code, headers, and body of the response.
+
+
+spring security flow, steps
+
+
+pagination steps
+batch processing
+
+filtering
+
+jpa vs hql
+
+how hql db store
+hibernate transaction flow
+
+design pattern
+how to call one api to other api // through rest template or web clients
+spring boot features
+internal working of spring boot
+Annotations
+1)@springbot
+2)@bean
+3)@qulaifier
+4)@value
+5)@Required  //setter-injection compulsory
+6)@lazy  //annotation can be used to configure the lazy initialization of the beans. By default, Spring initializes all singleton beans eagerly at the application startup. However, in certain scenarios where the bean initialization is resource intensive or not immediately required, lazy initialization improves the application startup time and resource utilization.
+7)@exclude/include //@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+
+Spring ioc container
+to instantiate the application class
+to configure the object
+to assemble the dependencies between the objects
+
+There are two types of IoC containers. They are:
+BeanFactory
+ApplicationContext
+The ApplicationContext interface is built on top of the BeanFactory interface. It adds some extra functionality than BeanFactory such as simple integration with Spring's AOP, message resource handling (for I18N), event propagation, application layer specific context 
+
+The XmlBeanFactory is the implementation class for the BeanFactory interface. To use the BeanFactory, we need to create the instance of XmlBeanFactory class as given below:
+
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);
+
+
+The ClassPathXmlApplicationContext class is the implementation class of ApplicationContext interface. We need to instantiate the ClassPathXmlApplicationContext class to use the ApplicationContext 
+
+ApplicationContext context =   
+    new ClassPathXmlApplicationContext("applicationContext.xml");  
+	
+	
+bean vs AplicationContext
+a bean is simply an object that is instantiated, assembled, and managed by the Spring IoC container.
+ApplicationContext is an interface in Spring that represents the Spring IoC container. It is responsible for creating, initializing, and configuring beans
+
+
+Ioc vs DI
+
+Spring security anootations
+@PreAuthorize - This annotation is used to specify a security expression that must be satisfied before a method is called.
+
+@Secured - This annotation specifies that a method can only be invoked by users with specific roles.
+
+@RolesAllowed - This annotation is used to restrict access to a method based on the roles of the current user.
+
+@EnableGlobalMethodSecurity - This annotation is used to enable global method security settings in your application.
+
+@EnableWebSecurity - This annotation is used to enable Spring Security's web security features in your application.
+
+database configuration
+AOP & Annotataions
+Spring caching
+Ptching  
+           //Sometimes modifying an existing codebase may not be possible or the most practical solution. So, the solution to this problem is a Monkey Patching. This approach allows us to modify the runtime of a class or module without modifying the source code.
+Sb parent dependecy
+
+
+
+
+The try-with-resources statement in Java is a special kind of try statement that automatically closes resources used within the try block when the block terminates. This feature was introduced in Java 7 to simplify resource management and to help avoid resource leaks, such as file handles or database connections that are not properly closed.
+Error codes
+Exception handling
+Http methods
+
+patch methods
+response status code for http method
+200 - OK: The request has succeeded.
+201 - Created: The request has been fulfilled and a new resource has been created.
+204 - No Content: The server has successfully fulfilled the request but there is no content to send back.
+400 - Bad Request: The server cannot or will not process the request due to a client error.
+401 - Unauthorized: The request requires authentication and the client credentials are missing or incorrect.
+403 - Forbidden: The server understood the request but refuses to authorize it.
+404 - Not Found: The requested resource could not be found on the server.
+405 - Method Not Allowed: The HTTP method used is not supported for the requested resource.
+500 - Internal Server Error: The server encountered an unexpected condition that prevents it from fulfilling the request.
+503 - Service Unavailable: The server is currently unable to handle the request due to temporary overloading or maintenance.
+
+how to secure rest api
+
+how to maintain session in rest api
+To maintain a session in a REST API, you can use a combination of cookies and tokens. Here are the steps to maintain session in a REST API:
+
+When a user logs in, generate a unique token (such as a JWT token) and store it in the server-side database along with the user's information.
+
+Set the token as a cookie in the response header when the user logs in or signs up.
+
+When subsequent requests are made from the client to the server, include the token in the request headers. This can be done by setting the token in the "Authorization" header with a value like "Bearer {token}".
+
+Validate the token on the server-side for each request. If the token is valid, allow access to the API endpoints.
+
+To maintain session expiration, set an expiry time for the token and handle token expiration scenarios on the server-side.
+filters in rest api //URL parameters is the simplest way to add filters to the rest Api /item?status=Active,value[gte]=10,quantity=1,volume[lte]=100
+differenc between stack vd heap
+when stack overflow error will occur
+when out of memoery error will occur , how to resolve // when there is insufficient space to allocate to an bject in the Java heap.
+java 8 features
+Functional interface
+default / sttaic in fucntional interface,,,
+optional in 8 /to handle NullPointerException too many null checks. So, to overcome this, Java 8 java.util package. It can help in writing a neat code without using too many null checks. By using Optional, we can specify alternate values to return or alternate code to run. This makes the code more readable.
+predicate and consume
+java 8 time, 
+map/ flatmap
+stream/parralel stream
+intermediate / terminaal operator  - intermediate return a new stream as a result(map,filter,sorted,flatmap)// terminaalproduces values or collection as result(reduce,forech,anymatch,allmatch)
+Authorisation for service
+http code--200.404 etc
+Json library
+jackson libraray +>ObjectMapper class responsible for parsing the JSON into Java objects.
+logger
+@inject
+@executor thread 
+How you handle error in rest ful service //HTTP Status Codes
+idopotent mehtods in http //HTTP methods such as GET, HEAD, PUT, DELETE, OPTIONS, and TRACE are considered idempotent. They can be retried or executed multiple times without causing unintended side effects.
+how to call restapi from psring boot //resttemplate-synchronised call,thread blocking  or webclients asynchronised calls non-blocking calls, request is plased in task queue until it gets response
+unique constraint
+Jsonignoreproperty //At the class level, we can easily ignore the specific fields by using the @JsonIgnoreProperties and specifying the fields by name.
+@JsonIgnore //field level
+jpa /orm/hibernate
+persistent state-hibernate //In this state, the object is associated with a specific Hibernate session (Object + Hibernate session) and is actively managed by Hibernate. Any changes made to the object will be tracked by Hibernate and will be persisted to the database when the session is flushed
+
+why password using character not sring //Strings are immutable in Java and therefore if a password is stored as plain text it will be available in memory until Garbage collector clears it and as Strings are used in the String pool for re-usability there are high chances that it will remain in memory for long duration, which is a security threat. Strings are immutable and there is no way that the content of Strings can be changed because any change will produce new String. 
+Within an array, the data can be wiped explicitly after its work is completed. The array can be overwritten and the password won’t be present anywhere in the system, even before garbage collection.
+
+ Why string used for key in map//Since the String class is immutable, you cannot modify the value of a String once it is created. Therefore, it is recommended to use a String variable to hold keys in hash a map.
+ how to make immutable class //useing final keyword
+ object nethods  //toString,Hashcode,equals,finalize,clone,wait,Notify,notifyall
+ intern method //String s1=new String("hello");  
+                 String s2="hello";  
+                 String s3=s1.intern();//returns string from pool, now it will be same as s2  
+ what is clonning and types //clone() method and by useing copy constructor
+ deep vs shallow clonning
+ == vs equals vs comparator  //equals to check two strings are equal and returns true if they are equal
+ compareto   //to compare two string Lexicographically means in dictionary order
+ thread life cycle //New -new Thread(),Active - Thread.start(),Blocked,Timed Waiting,Terminated
+ Thread priorities
+ thread pool//A thread pool reuses previously created threads to execute current tasks and offers a solution to the problem of thread cycle overhead and resource thrashing. Since the thread is already existing when the request arrives, the delay introduced by thread creation is eliminated, making the application more responsive.
+ Executor service  //The ExecutorService helps in maintaining a pool of threads and assigns them tasks. It also provides the facility to queue up tasks until there is a free thread available if the number of tasks is more than the threads available.
+ Autocloseble interface//close()
+                         As we can see, it is a simple interface with a single method, close() that takes no arguments and returns nothing (void). The close() method is designed to release resources held by an object that implements this interface.
+ How to make readonly list //   List<Character> immutablelist = Collections.unmodifiableList(list); 
+
+ one to many mapping
+ final , finnaly , finalise
+ spring profile //Spring Profiles provide a way to segregate parts of your application configuration and make it only available in certain environments.
+ multicatch block in java 
+ try with resource
+ exception
+ not serialisable exception//When an object is not implement the Serializable interface
+ bean life cyccle
+ java 8 and java 11 
+ jpa transaction steps //@Transactional annotation is used to manage transactions in a Spring boot application and used to define a scope of transaction. 
+ what are challenges included under api testing?
+ ans:: Api documentation(if need to test one api need to know, purpose and core of api,,what kind of api request is this? eg:get/put/post)
+ connection to db (some projrct not able to conect db, not able to get data have to use mock )
+ Authorisation overhead
+ 
+ List out few authentication techniques
+ Ans::: Seesion/Cookie Authencation
+        Basic Authentication
+		OAuth
+		Jwt
+		
+		
+Spring cache
+First/Second cache
+What exactly need to verify in api testing?
+**verify accuracy of data as expecteed
+**check http status code
+**check response time to check performance
+**Error code in API return error through status ocde
+** Authorisation check
+
+
+What are path parameter and Query parameter? //path parameter - are used to identify a specific resource, Query parameter - are used to filter and sort
+http:/javacourse/ourse/1123?price=56
+---------------  ----  ----  --------
+endpoint         source path? queryparamter
+
+startswith/-path paramter
+starts with ?-Query parameter
+
+how used why?path/Quer paramter
+
+What are core components of http request
+** mention Http request method--get/put/post
+** uri identifier(wher api posted)
+**Resource Parameter
+**Resource Header ,Which carries metadata for Http request mesage
+**Request Body ,MEssage content
+
+what do you understand payload in restful webservices
+payload/body is a secured input data sent to api o procees the request
+payload i generally represent in json format
+
+json parsing Techniques
+JSon path/desserialisation in pojo class  // json to pojo with help of objectmapperclass.readvalue() in jackson library //pojo to json objectmapper.writeValue
+Deisgn pattern--\creational , structural, behavioural
+
+
+STORED PROCEDURE
+@REST CONTROLLER/@CONTROLLER/@C
+sPRING SECURITY
+SPRING ACTUATOR
+
+
+Describe your previous project and the obstacles faced, your contribution for the success of the project.
+ 
+
+What is the database used in your project? (I said MySQL)
+ 
+
+What made you to choose MySQL for your project?
+ 
+
+Which scenarios, we should we go for NoSQL DB and relational DB?
+ 
+
+What are the benefits we get, when we go for relational DB? Which relational DB we need to go in which scenarios?
+ 
+
+Suppose, you are developing an application like whatsapp or facebook where direct messages are allowed but no group messages, how will you design your data model.
+ 
+User                                                                  Message
+
+UserID: Unique identifier for each user (Primary Key)             MessageID: Unique identifier for each message (Primary Key)                               
+Username: User's display name									SenderID: Foreign key referencing the UserID of the sender	
+Email: User's email address (unique)                                ReceiverID: Foreign key referencing the UserID of the receiver
+Phone: User's phone number (unique, if applicable                  Content: Text content of the message
+PasswordHash: Hashed password for authentication                       Timestamp: Date and time when the message was sent
+ProfilePicture: URL to the user's profile picture
+Status: User's status message
+																					
+
+*********************
+
+
+Define immutability? Advantages.
+Immutability refers to the property of an object whose state cannot be modified after it is created. In other words, once an immutable object is instantiated, its fields or properties cannot be changed.
+ If any modifications are needed, a new object is created with the desired changes, leaving the original object unchanged. 
+ 
+ Thread-Safety: Immutable objects are inherently thread-safe because their state cannot be altered once created.
+ This eliminates the need for complex synchronization mechanisms in multi-threaded environments.
+
+How will create immutable class?
+
+ *****Declare the Class as Final:
+
+This prevents other classes from extending it
+
+****Make Fields Private and Final:
+
+Private: To prevent direct access to fields.
+Final: To ensure the fields are initialized only once.
+
+*******Initialize Fields via Constructor:
+
+Provide a constructor that initializes all fields. Do not provide setters.
+
+********Ensure Proper Deep Copying:
+
+If your class holds references to mutable objects, make sure to perform deep copying in the constructor and access methods.
+
+
+
+What do you think is  thread safety.
+A thread-safe object or code ensures that concurrent execution by multiple threads does not lead to race conditions, data corruption, or inconsistent state.
+
+Race Conditions:
+
+Occur when multiple threads access and modify shared data concurrently, leading to unpredictable outcomes.
+
+Volatile Keyword:
+Ensures that changes to a variable are visible to all threads. In Java, declaring a variable as volatile guarantees that reads and writes to the variable are directly from and to the main memory, providing visibility and ordering guarantees
+
+Sharing immutable objects between threads does not require synchronization.
+
+
+
+Which collection objects are thread safe..
+
+vector--it is generally advised to use ArrayList
+
+ahshtable---ConcurrentHashMap is preferred due to better concurrency performance.
+
+List<Integer> synchronizedList = Collections.synchronizedList(new ArrayList<>());
+Set<Integer> synchronizedSet = Collections.synchronizedSet(new HashSet<>());
+Map<Integer, String> synchronizedMap = Collections.synchronizedMap(new HashMap<>());
+
+
+
+copy on write array list\----
+CopyOnWriteArrayList:
+
+A thread-safe variant of ArrayList in which all mutative operations (add, set, and so on) are implemented by making a fresh copy of the underlying array.
+
+CopyOnWriteArraySet:
+
+A thread-safe variant of HashSet that uses an internal CopyOnWriteArrayList for all of its operations.
+
+sunchronised method,block--
+ 
+
+What is the time complexity for  get  and put operations in hashmap?
+ 
+
+
+****
+In concurrenthashmap, how get works?
+Older versions of ConcurrentHashMap (pre-Java 8) used a segmented locking mechanism, where the map was divided into segments, each functioning as an independent hash table with its own lock. 
+This allowed higher concurrency because only the segment containing the particular key would be locked during updates.
+
+jav 8 
+use a lock-free mechanism for read operations, ensuring even better performance and scalability. This is achieved using a combination of volatile variables and atomic operations.
+The internal array (referred to as table) consists of Node<K,V>[] entries. store asa key value pair
+ Lock-free reads ensure that multiple threads can read the map concurrently without contention.
+ Thread Safety: Ensures that concurrent reads and writes do not lead to data corruption or inconsistent state, le
+
+
+
+synchronised hashmap---
+Map<String, String> synchronizedMap = Collections.synchronizedMap(map);
+
+
+
+Map<String, String> map = new HashMap<>();
+
+        synchronized (map) {
+            map.put("key1", "value1");
+        }
+how copy on write array list owrks--
+The internal array is immutable and is never modified directly.
+ Any write operation creates a new copy of the array, performs the modification on this new copy, and then updates the reference to point to this new array.
+ but can be costly in terms of memory and performance when write operations are frequent.
+
+
+
+What is stream pipelining.
+ 
+
+What are two different types of operator in streams? Name some of them?(intermediate and terminal operations)
+ 
+
+Which http methods you have used and explain about them.
+ 
+
+What are different ways to secure your rest API.
+ 
+
+Can you explain about  security through HMAC.
+ 
+
+Name the components of any messaging system.
+ 
+
+Why do we use caching. Where does the cached content be saved? What are the keys that we generally use for caching.
+ 
+
+What is mocking what is the advantage of it.
+ 
+
+What is argument mocking?
+ 
+
+What do you mean by continuous integration?
+ 
+
+ 
+
+ 
+
+Core java:
+
+ 
+
+Strings: scenario based question ->  based on string literals and string objects how they are stored in the memory
+
+                                                                One small scenario on == and equals concept.
+
+ 
+
+How to avoid duplicate entries into hash map when the key is custom class object (more of hash code and equals implementation related)
+
+ 
+
+How will u use hash map in a multithreaded environment.(synchronized and concurrent hash map related)
+
+ 
+
+Which scenario we will use object cloning in java.
+
+ 
+
+What is inversion of control?
+
+ 
+
+Given a scenario Why variable inside lambda expressions should be final? (just for reference:  9th , 10th points in https://www.baeldung.com/java-8-lambda-expressions-tips
+
+Lambda Expressions and Functional Interfaces: Tips and Best Practices - Baeldung
+Functional interfaces, which are gathered in the java.util.function package, satisfy most developers' needs in providing target types for lambda expressions and method references. Each of these interfaces is general and abstract, making them easy to adapt to almost any lambda expression.
+www.baeldung.com
+)
+
+ 
+
+Operating on Stream(), is it thread safe? Yes
+
+ 
+
+Spring boot:
+
+ 
+
+what and why  embedded server in spring boot.
+
+ 
+
+When we have a full-fledged framework like spring MVC why do we need spring boot.
+
+ 
+
+Diff between spring MVC and spring boot.
+
+ 
+
+Have you worked on spring web flux?
+
+ 
+
+General:
+
+ 
+
+Have you worked on any front end?
+
+ 
+
+Have written units?
+
+ 
+
+How did u do integration testing.
+
+ 
+
+What are the DevOps tools used?
+
+ 
+
+What are the Design patterns that u have used till now.
+
+ 
+
+Design a service from scratch which should be able to add, modify remove and fetch results with pagination. Elaborate on annotations.
+
+ 
+
+ 
+
+Core Java
+1.       OPPS principles with some coding examples which covers Class, Objects, Abstraction
+2.       Core Java Basics
+a.       Usage of Static, Volatile and Transient keywords
+b.       String, StringBuilder Concepts
+c.       Immutable Objects and how to create them
+d.       Wrapper Classes
+e.       Threads with examples
+f.        Synchronization
+g.       Serialization
+h.       Garbage Collection
+i.         Reflections
+j.         Singleton Design Pattern and how to create the same
+k.       Comparators and Comparable
+l.         Collections
+                                                    i.      ArrayList
+                                                  ii.      HashMap and internal working of the same
+                                                 iii.      HashSet
+                                                 iv.      How to unmodifiable Collection
+                                                   v.      How to create synchronized Collection
+                                                 vi.      Synchronized Collections
+1.       ConcurrentHashMap
+2.       CopyOnWriteArrayList/set
+                L. Exception Handling
+  3. Java 8 concepts
+                1. Streams and their operations like intermediate operations and terminal operations and collectors
+                2. Functional interfaces
+                3. Lambda Expressions
+                4. Method references
+                5. Usage of Optional
+           
+ 
+Other Points:
+
+1)      Diff between Spring and Spring boot
+
+2)      How autoconfiguration works in spring boot
+
+3)      Spring bean scopes and difference between singleton and prototype
+
+4)      Thread Safety
+
+5)      What is Spring AOP and @Transactional and how to use @Transactional. PointCut etc
+
+Spring AOP (Aspect-Oriented Programming) is a way of separating cross-cutting concerns from the main logic of a program. This allows you to modularize concerns such as logging, transaction management, security, etc., and apply them to multiple parts of your application without repeating code.
+
+@Transactional is an annotation in Spring that provides declarative transaction management for your application. When you mark a method with @Transactional, Spring will handle the opening and closing of transactions for you, ensuring that the method is executed within a transactional context.
+
+Pointcuts in AOP define the join points where an aspect will be applied. In the context of Spring AOP, pointcuts can be defined using expressions that specify the methods or classes to which aspects should be applied
+
+
+6)      Maven related questions (dependency conflicts,exclusion,parent pom)
+
+7)      Difference between Interface and Abstract class and real time example
+
+8)      Jpa repository related questions and how to use in the customized way and what are its implementation frameworks
+
+9)      Immutability
+
+10)   What is collection framework and what are the implemented classes
+
+11)   If the same class name from different packages imported how to specify to use a specific class from specific package
+
+
+
+1.  Lamda expressions.
+
+2.       Streams.
+
+3.       Streams operation explanation – intermediate and terminal operations.
+
+4.       Heap and stack memory.
+
+5.       Method reference, default and static methods of 1.8 features.
+
+6.       Try with Resources.
+
+7.        Cloning of objects.
+
+9.       Spring boot custom configurations.
+
+ 
+
+2. what are advantages of Spring boot ?
+
+3. what are scopes available in Spring ?
+
+4. Is Singleton scope is thread safe ?
+
+5. Spring Boot Starters ?
+
+6. Spring Boot Application Context ?
+
+7. JSON format
+
+8.HTTP Protocol
+
+9. Rest means
+
+10. HTTP Methods
+
+11. HTTP Response
+
+12. HTTP Status Codes
+200 - success/OK
+201 - CREATED - used in POST or PUT methods.
+304 - NOT MODIFIED - used in conditional GET requests to reduce the bandwidth use of the network. Here, the body of the response sent should be empty.
+400 - BAD REQUEST - This can be due to validation errors or missing input data.
+401- UNAUTHORIZED - This is returned when there is no valid authentication credentials sent along with the request.
+403 - FORBIDDEN - sent when the user does not have access (or is forbidden) to the resource.
+404 - NOT FOUND - Resource method is not available.
+500 - INTERNAL SERVER ERROR - server threw some exceptions while running the method.
+502 - BAD GATEWAY - Server was not able to get the response from another upstream server
+
+500- internal server eror
+502- bad gateway
+
+13. Micro Service Advantage
+
+14. Micro Service versioning
+
+15. Diff b/w singleton and prototype
+
+16. Immutable class
+
+17. How will create immutable class
+
+20. Multi-threading
+
+21. Spring boot application flow
+
+3. How @Qualifier annotation will work in Spring Boot ?(If 2  classes implementing one Interface and If we want to use single instance of base class)
+
+5. How filters work in Spring Security ?
+Spring Security Filters
+A series of Spring Security filters intercept each request & work together to identify if Authentication is required or not.
+
+Authentication : Filters like UsernamePasswordAuthenticationFilter will extract username/ password from HTTP request & prepare
+AuthenticationManager : Once received request from filter, it delegates the validating of the user details to the authentication providers available. Since there can be
+AuthenticationProvider : AuthenticationProviders has all the core logic of validating user details for authentication
+UserDetailsManager/UserDetailsService : It helps in retrieving, creating, updating, deleting the User Details from the DB/storage systems.
+paswrd encode
+security contest
+
+
+6. How to disable Spring Secuirty ?
+@Value("${application.security.disabled:false}")
+
+
+7. Can we achieve spring security, logging with spring AOP ?
+
+Logging and Monitoring:
+
+AOP allows you to modularize cross-cutting concerns, such as logging, security, and transaction management.
+AOP can be used to add logging to various parts of the application, helping in monitoring and performance analysis.
+
+
+AOP can assist in implementing security aspects, such as authentication and authorization, by applying security-related advice across the application.
+@HasEndpointAuthorities(authorities = { SecurityAuthorities.USER })
+@GetMapping("/api/v1/expenses", produces = MediaType.APPLICATION_JSON_VALUE)
+
+ @Before("within(@org.springframework.web.bind.annotation.RestController *) && @annotation(authorities)")
+  
+
+11. In which scenario/context we will use request and session scopes in spring?
+if you refresh your browser, a new request is sent and a new bean is created. This is ideal for actions that are form-based and need to be done without interruption from other requests.
+
+ So, if you refresh your browser, the same bean is available as long as the HTTP session is alive. This is useful for user-specific data like user preferences, user authentication, shopping cart data, etc.
+
+
+
+
+12. Explain what are the main steps involved while developing spring Boot application? (Expected Answer : Explain @SpringBootApplication and entry class functionality and application.yaml file)
+
+
+SpringApplication.run(MyFirstApplication.class, args);
+
+Spring Boot starts up, this run() method is executed.
+1.
+The run() method sets up the initial configuration those are needed for Spring Boot to start. So that you don't have to configure them all by yourself.
+2.
+ou can consider the Application Context as the main container for Spring. In Spring when you define classes, those classes(Also called as beans) are managed by the Application Context. And the run() method creates this Application Context.
+
+Scans Class Path
+
+start server
+
+
+13.How to restrict auto configuration for some classes?
+@Configuration
+@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class})
+public class MyConfiguration {
+}
+
+13. What are starters required for web application ?
+
+
+
+
+
+16. Best practises required while developing Restful Web Services?
+1. Use JSON as the Format for Sending and Receiving Data
+use correct name for api
+Use Nesting on Endpoints to Show Relationships
+Use SSL for Security
+Use Status Codes in Error Handling
+
+17. what is the role of BeanFactory or ApplicationContext in Spring Boot ?
+
+18. How properties in application.properties will be used/involed in Spring boot auto configuration?
+
+ 
+
+Spring Data:
+
+————————————————————
+
+1. What is the use of @Repository?
+
+2. What is you meant by JPA?
+
+3. What are starters required for Spring Data?
+
+4. How to configure Datasource and use it in spring application?
+
+5. If you configure database properties in application.properties file then How will spring boot will know about Datasource ?
+
+6. What is the use of @Entity annotation?
+
+7. What are configurations and dependencies required Spring Data?
+
+spring data jpa
+
+8. Let us take an example, we have class Person with fields ID,Name How to perform CRUD operations using Spring Data?
+
+find all, find by id, save, dele by id
+
+9. What is use of H2 database?
+ It can be embedded in Java applications 
+It is an extremely fast database engine.
+
+H2 is open source and written in Java.
+
+It supports standard SQL and JDBC API. It can use PostgreSQL ODBC driver too.
+
+It has embedded and Server mode. 
+***************************
+10. What do you meant by Transaction ?
+
+7. Design patterns involved in restful web services ?
+
+ 
+
+1) Java 8 and 11 features with details.
+
+java 11
+is blank
+trail
+
+
+2) how to secure restful webservices.
+
+3) Connecting 2 DB with the same query but processing time is different which approach you will be following?
+
+ spring session scope
+ 
+ singleton - only one instance of the spring bean will be created for the spring container
+ prototype – A new instance will be created every time the bean is requested from the spring container.
+ request – This is same as prototype scope, however it’s meant to be used for web applications. A new instance of the bean will be created for each HTTP request.
+ session – A new bean will be created for each HTTP session by the container.
+ 
+global-session – This is used to create global session beans for Portlet applications.
+ 
+
+Tell me about yourself and the project you have worked on? How relevant the technologies were?
+What are the complex things you have worked on in your previous project? How did you implement it?
+What is Immutability?
+How will you make a class Immutable?
+Name the Collections which are Immutable in nature.
+What is Thread Safety?
+What are Java 8 features and explain.
+
+What is JPA Transaction Management?
+
+What are different HTTP methods?
+
+get - retreive data
+post = send data to a server to create/update a resource.
+put -modify
+patch - similat to put, but modify specific data
+
+What are different HTTP error codes?
+
+400 - bad request
+401-unauthorised
+404 not found
+408- request timeout
+
+500 - internal server eoor
+502-bad gateway
+504 - gateway timeout
+
+What is Spring Dependency Injection? How @Autowired works in Spring?
+
+
+What are different types of Authentication and how it works?
+paswword based 
+multifactor authentication---(otp)
+Token based 
+API Authentication:
+Now-a-days, API has become a popular model because it handles large volumes of data and is a new dimension to the online security world. 
+There are many API authentication methods, the most popular of them are HTTP Basic Auth, API keys, OAuth.
+HTTP Basic Authentication:
+To prove their authenticity, a user agent just offers a username and password. Because it believes in the HTTP header itself, this solution does not require cookies, session IDs, or login pages.
+
+
+
+If SQL query execution is taking time then how to increase the query performance?
+use index, use appropriate data type,avoid subqueries like where having instead use join, use top or limit to return result of rows
+group by to grpoup data
+
+create index ind_name on tabke name(column);
+
+
+ stored proceudre
+ 
+ A stored procedure is a prepared SQL code that you can save, so the code can be reused over and over again.
+
+So if you have an SQL query that you write over and over again, save it as a stored procedure, and then just call it to execute it.
+
+You can also pass parameters to a stored procedure, so that the stored procedure can act based on the parameter value(s) that is passed.
+
+CREATE PROCEDURE procedure_name
+AS
+SELECT * FROM Customers== sql query
+GO;
+
+
+EXEC procedure_name;
+ 
+How to write Junit/Mockito test cases when we can’t have a connection to Database of any environment?
+What is reactive programming?
+What are Mono and Flux?
+Have you worked on Kafka and Redis? – Go through the basic of them.
+
+How would you handle inter-service communication in a micro service architecture using spring boot
+How would you implement caching in spring boot ?
+If your spring boot application is experiencing performance issues at high load. What are the steps you would take to identify and address the issue?
+Have you implemented REST Apis versioning? What was the need and how did you implement ? what are the possible ways to implement versioning in spring boot application
+What are conditional annotations ? Have you used any such annotations?
+What is the use of @EnableAutoConfiguartion annotation in spring boot. How does spring boot achieve auto configuration
+If we do not want a dependency to be auto-configured by AutoConfiguration, what steps do we need to take?
+How do you monitor your spring boot application in production. Which dependency you use ?
+How would you handle multiple beans of same type?
+How spring profiles work in spring boot application ? How many profiles you have in your project?
+How does spring boot decide which server to use ? How to change server if required?
+Suppose I want to List out all the beans used in spring boot application? How to get the list?
+How does Spring Boot handle externalized configuration? What are the ways ?
+Can you differentiate between spring Authentication and Authorization in spring security ? If the requirement is to allow certain Apis to few people, how will you achieve that ?
+How do you secure your Rest Apis ? What are the ways to secure Apis ?
+Which all starter dependencies you have used in application? Have you created your own starter dependency ?
+What is rate limiter ? Have you used one?
+What are interceptors and How are you using it in your spring boot application
+Explain life cycle of interceptors (different phases involved)
+What does spring boot application do internally
+select *from employee 
+group by salary 
+order by  salary desc limit 1,1;  - 2nd
+
+SELECT salary 
+FROM employee 
+ORDER BY salary desc limit 1,n-1
+
+
+SELECT * FROM employee 
+WHERE salary= (SELECT DISTINCT salary 
+FROM employee ORDER BY salary DESC LIMIT 3,1);
+
+
+Q01.Scenario: You need to load stock exchange security codes with price from a database and cache them for performance. The security codes need to be refreshed say every 30 minutes. This cached data needs to be populated and refreshed by a single writer thread and read by several reader threads.
+ How will you ensure that your read/write solution is scalable and thread safe?
+
+Option 1: The java.util.concurrent.locks package provides classes that implement read/write locks where the read lock can be executed in parallel by multiple threads and the write lock can be held by only a single thread. 
+The ReadWriteLock interface maintains a pair of associated locks, one for read-only and one for writing. The readLock( ) may be held simultaneously by multiple reader threads, while the writeLock( ) is exclusive. In general, this implementation improves performance and scalability when compared to the mutex locks (i.e. via synchronized key word) when
+
+1. There are more reads and read duration compared to writes and write duration.
+
+2. It also depends on the machine you are running on — for example, multi-core processors for better parallelism.
+
+Option 2: The ConcurrentHashmap is another example where improved performance can be achieved when you have more reads than writes. 
+The ConcurrentHashmap allows concurrent reads and locks only the buckets that are used for modification or insertion of data.
+
+subset of sql
+how you call rest api from java 
+ddl,dml, queries
+
+
+String methods
+1.charAt - indexes
+2.concat
+3.contains
+4.endswith - boolesn value
+5.equals
+6.
+
+
+https://www.turing.com/interview-questions/spring-boot
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+  increase salary by 10% wo age greater than 25
+  odd even using stream
+  count occurences
+  duplicate 
+  repeated word
+  square given value using stream
+  sorting
+  max min
+  
+  
+  count character
+  count string
+  find maximum string lenth
+  first non repeated character
+  first repeated
+   how many times character exist in string
+   how to use flatmap program code
+   
+   maxmimum lengt'
+   max salry 
+------------------------------------------------------------------------------------------------------------------------   
+   
+coverity issues 
+  
+1.Do not catch null pouinter exception -null pointer exception should need to be handled using null check, but it should not be catched(Nullpointerexception) it will hide underlaying problems in the code
+
+getBytes() -> String into charcode Array
+2.Dubious method - // dont use String.getBytes() like this i.einput.getBytes(), in this default encoding is used. The default encoding may vary depending on the system, JVM, or environment in which the code is running. leads to portability and consistency issues across different environments.
+                   // use UTF-8 like str.getBytes("UTF-8");this mention encoding type expilicitly// ensure consistency across different platforms
+				   
+3. Stronghash algoritham  SHA-256 -> secure hashing algoritham //used in security protocols such as SSL/TSL
+ MessageDigest md = MessageDigest.getInstance("SHA-256"); //SHA-256 provide strong security gurantee//Always use a cryptographically secure hash algorithm
+ //MessageDigest is a class provided by the java.security package that is used for hashing (digesting) data using various cryptographic algorithms like SHA-256,MDS5
+
+ private String generateHash(String input) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hashBytes = md.digest(input.getBytes(StandardCharsets.UTF_8));
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashBytes) {
+            sb.append(String.format("%02x", b)); //Each byte is formatted as a two-character hexadecimal value to create hexadecimal representation of the hash
+			                                     //SHA-256 Hash: a591a6d40bf420404a011733cfb7b190d62c65bf0bcda51e8e6d6e632be1f0b3
+        }
+        return sb.toString();
+    }
+------------------------------------------------------------------------------------------------------------------------------
+Password hashing: Often used with techniques like salting to securely store passwords.
+
+Collision resistance: It should be extremely difficult to find two different inputs that produce the same hash (a "collision").

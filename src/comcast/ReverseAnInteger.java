@@ -14,7 +14,7 @@ public class ReverseAnInteger {
 	Predicate<Integer>	p=n->{while(n>1) { 
 			n=n/10; }
 		return n==1;
-		});
+		};
 	
 	l.stream().filter(i->p.test(i)).forEach(System.out::println);
 		
