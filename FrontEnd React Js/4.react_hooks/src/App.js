@@ -1,23 +1,19 @@
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
+import Parent from './components/Parent';
 
 function App() {
+  useEffect(() => {
+    // This function will be called when the component is mounted
+    // You can perform side effects here, like fetching data or setting up subscriptions 
+    console.log("App component mounted");
+    // This function will be called when the component is unmounted
+    return () => {console.log("App component unmounted");};
+  },[]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Parent/>
     </div>
   );
 }
