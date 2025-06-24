@@ -1,0 +1,14 @@
+Download Noad Lts version :  https://nodejs.org/en/download
+move file to temp folder install
+------------------------------------------------
+//installing global p[ackages in parent folder
+ npm install -g create-react-app
+------------------------------------------------
+//creating react app
+npx create-react-app priyankaApp
+-----------------------------------------------
+//use this command when you get web vitals error
+npm install --save-dev web-vitals
+
+-----------------------------------------------
+create a component (eg) child.js - rfce
