@@ -6,9 +6,18 @@ move file to temp folder install
 ------------------------------------------------
 //creating react app
 npx create-react-app priyankaApp
+--------------------------------------------------
+install basic extenstions like
+react ES7
+prettier extenstion
 -----------------------------------------------
 //use this command when you get web vitals error
 npm install --save-dev web-vitals
 
 -----------------------------------------------
 create a component (eg) child.js - rfce
+
+----------------------------------------------
+Theory concepts
+1.react architecture and server side rendering
+2.why react and ES7
