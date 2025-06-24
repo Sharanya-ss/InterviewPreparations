@@ -1,6 +1,11 @@
 Download Noad Lts version :  https://nodejs.org/en/download
 move file to temp folder install
 ------------------------------------------------
+open FrontEnd React js folder in VS code 
+cd to 1.functional_component project
+//enter npm i command in terminal as your project won't contain any node modules when downloaded from git very first time
+npm i 
+------------------------------------------------
 //installing global p[ackages in parent folder
  npm install -g create-react-app
 ------------------------------------------------
