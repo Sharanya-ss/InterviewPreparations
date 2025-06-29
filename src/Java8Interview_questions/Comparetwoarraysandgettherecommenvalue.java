@@ -6,8 +6,8 @@ import java.util.TreeSet;
 public class Comparetwoarraysandgettherecommenvalue {
 	 // find common elements between two given arrays
     public static void main(String[] args) {
-        String[] s1 = {"Antony", "immanuel", "Shailaja", "krishna", "Rajesh"};
-        String[] s2 = {"Antony", "immanuel", "Shailaja", "sharanya"};
+        String[] s1 = {"Priyanka", "immanuel", "Shailaja", "krishna", "Rajesh"};
+        String[] s2 = {"Priyanka", "immanuel", "Shailaja", "sharanya"};
         Set<String> set = new TreeSet<>();
 
         for (int i = 0; i < s1.length; i++) {
