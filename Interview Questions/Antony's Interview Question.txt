@@ -1,19 +1,19 @@
 1)why string is immutable, and string buffer is mutable?-StringBuffer methods are synchronized, making it thread-safe. This means that multiple threads can safely modify a StringBuffer instance without causing data corruption.
 1.oracle jdk vs open jdk
 1.7 layers of OSI
-1.transaction managenent in SQL
+1.transaction managenent in SQL ACID 
 1.dead lock in sql
 1.map data structure implementation useing ArrayList
 1.custom hooks
-1.dead locks in Java  - 
+1.dead locks in Java  // threads will wait for each other to release the lock
 1.java pointers vs c pointers
 1.Types of protocals http,mtls,htpps
 1.SSL handshake
-1.securtity implementation in microservice.
+1.securtity implementation in microservice. - spring security, MTLS,use API gateway Architecture, fine grained access tokens
 2)jdk,jre, jvm, jit
-3)method overriding ,overloading
-ststic method in interface--- no need to create instance, and cannot overiden by implmenting class
-default in interface- provide default implemntation if needed,Default methods allow adding new methods to interfaces without breaking the existing implementations of those interfaces.
+3)method overriding ,overloading 
+ststic method in interface --- no need to create instance, and cannot overiden by implmenting class
+default in interface- provide default implemntation if needed,Default methods allow adding new methods to interfaces without breaking the existing implementations of those interfaces.// and backward compatability in java
 4)Runtime polymorphism or dynamic method dispatch  // method overiding
 4)static polymorphism //method overloading
 5)comparable vs comparator
