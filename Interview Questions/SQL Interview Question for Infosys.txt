@@ -1,0 +1,87 @@
+1.Aggreagate function - min(), Max() , SUM(), AVG() - they should be used with grouping by inorder to use with non agreagate colums
+2.DDL vs DML
+3.Truncate vs delete
+4.primary key vs Foreign key
+4.Group by vs DISTINCT
+5.Primary key column vs unique key column
+6.OnDelete Cascade vs Ondelete set null
+7.Rollback
+8.ACID properties
+9 Views vs Table
+9.ways to improve performance of Databse Query - indexing
+Indexing in SQL is a technique used to improve the performance of database queries by allowing faster retrieval of data. 
+It involves creating an index on one or more columns of a table, which helps the database engine quickly locate the rows that satisfy a certain condition in a query.
+Facilitating joins: Indexes can be used to speed up join operations between tables by allowing the database engine to quickly find matching rows based on the join condition.
+CREATE INDEX idx_last_name ON employees(last_name);
+select last_name from employee
+
+9.SQL clauses Precedence:
+FROM 
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+
+10.----- Stored Procedure creation ------
+CREATE PROCEDURE procedure_name
+AS
+SELECT * FROM Customers== sql query
+GO;
+
+11.----- Triggers---------------
+CREATE [OR REPLACE] TRIGGER trigger_name
+{BEFORE | AFTER | INSTEAD OF} 
+{INSERT | UPDATE | DELETE} 
+ON table_name
+[FOR EACH ROW]
+[WHEN (condition)]
+BEGIN
+   -- PL/SQL trigger body
+END;
+
+12.----- Views---------------------
+CREATE [OR REPLACE] VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+-------------------------------------------------------------------------------------
+problems 
+-------------------------------------------------------------------------------------
+max salary query
+
+select MAX(salary)as salary  from employee;
+----------------------------------------------------------
+4 th maximum salary
+
+select MAX(slaary) as salary from employee Order By salary Desc Limit 1 Offset 3 Rows;
+
+----------------------------------------------------------
+select *from employee 
+group by salary 
+order by  salary desc limit 1,1;  - 2nd
+----------------------------------------------------------
+
+SELECT salary 
+FROM employee 
+ORDER BY salary desc limit 1,n-1
+
+-------------------------------------------------------------
+
+SELECT * FROM employee 
+WHERE salary= (SELECT DISTINCT salary 
+FROM employee ORDER BY salary DESC LIMIT 3,1);
+
+---------------------------------------------------------------
+Problem on Joins
+ 
+SELECT e.employee_id, e.name, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id;
+
+---------------------------------------------------------------
+SELECT department_id, MAX(salary) AS max_salary
+FROM employees
+GROUP BY department_id;
+
+----------------------------------------------------------------

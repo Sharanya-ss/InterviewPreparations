@@ -1,0 +1,218 @@
+1)why string is immutable, and string buffer is mutable?-StringBuffer methods are synchronized, making it thread-safe. This means that multiple threads can safely modify a StringBuffer instance without causing data corruption.
+2.String constant pool
+3.Method over riding and method overloading. Polymorphysam
+4. Error handling in Java try{}catch(){}finally
+4.when try blocks fail
+4.what if we have return in try, even still finally executes
+5.thows vs throw
+6.ways to create Implemnting Runalbe interface, Extending thread class, overiding run method in both
+7.final, finally, finalyze
+8.differance between Arrays list and Linked list
+8.vector - simialr to Array List but all methods inside Vector is Synchronized
+8.differance between Hashset, Linked hashset, Tree Set
+8.map- hashmap, linkedhashmap, Treemap - know about basic methods like put(), get(), containsKey()
+8.differance between fail fast and fail safe
+8.Concurrent hash map - part conccurrent collection - uses segment level lock ,uses failsafe iterator , no null suport
+9.comparable vs comparator
+10.jdk,jre, jvm, jit
+11.dead locks in Java
+12. scopes in java class Public, private, protected(specially for inheritance), default(when no access specifier is mentionedd for a method- it makes method to available inside the pacakge)
+13.what if we not close properly finally block
+If we do not close the finally block properly, it may result in the resources not being properly released or the cleanup code not being executed as expected. 
+This could lead to memory leaks, resource leaks, or other unexpected behavior in the program
+14.)bean scope in spring boot //understand only singleton and prototype
+Singleton: This is the default scope in Spring Boot. A singleton bean is created only once per Spring IoC container and is shared by all dependent beans.
+Prototype: A prototype bean is created each time it is requested. This means that a new instance of the bean is created by copying excisting object every time it is injected or looked up.
+Request: A request scope bean is created for each HTTP request. This means that a new instance is created for every HTTP request and is available only for the duration of that request.
+Session: A session scope bean is created for each HTTP session. This means that a new instance is created for each user session and is available for the entire duration of that session.
+Global Session: This scope is similar to the session scope, but it is used in the context of a Portlet environment where the session is shared among multiple portlets.
+
+15. Clonable interface - clone not supported exception
+A CloneNotSupportedException is thrown when an object does not support being cloned. This typically occurs when the clone() method is called on an object that does not implement the Cloneable interface.To avoid this CloneNotSupportedException you can handle it by either implementing the Cloneable interface in your class 
+16.stack overflow exception3 - StackOverflowError is an error which Java doesn’t allow to catch, for instance, stack running out of space, as it’s one of the most common runtime errors one can encounter. It happens when loop or recursive function does not haveproper exit statement
+
+17.Spring vs Spring Boot
+   Spring - used for dependancy injection and it has manual configuation
+   Spring Boot - Provides features of Auto configuration using SpringBoot-Starter-parent project in Pom.xml and also has embeded server, just we need to mention properties in Application.properties
+   
+17.@Transactional - this Annotaion is used to simplify the transaction management (using its boundarys)
+
+17.@RestController Vs @controller
+
+17.@RestControllerAdvice - used to handle exeption in spring boot
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException(ResourceNotFoundException ex) {
+        return ex.getMessage();
+    }
+
+17. Microservice VS Monolithic
+
+17. Spring Boot Actuators - To monitor health of the application and Internal Metrics(CPU usage)
+                            //Avadnced monitoring can be done using Promotheous and Grafanna
+
+18. Spring security anotations
+@PreAuthorize - This annotation is used to specify a security expression that must be satisfied before a method is called.
+@Secured - This annotation specifies that a method can only be invoked by users with specific roles.
+@RolesAllowed - This annotation is used to restrict access to a method based on the roles of the current user.
+@EnableGlobalMethodSecurity - This annotation is used to enable global method security settings in your application.
+@EnableWebSecurity - This annotation is used to enable Spring Security's web security features in your application.
+
+19.how to resolve conflicts in git while merging
+20.basic git methods
+21.junit unit methods - @BeforeAll @BeforeEach @Test @AfterEach @AfterAll
+22.junit Assertion methods -
+    assertEquals(Expected,Actual);
+    assertTrue(boolean condition)
+    assertFalse
+    assertNull
+    assertNotNull
+22. Mock object vs StubObject
+22.what is JPA - it is specifiaction to perform object relational mapping
+23.Spring container name - Application context
+24.types of Annotation in spring boot
+   Steriotype Annotaion - @Component, @RestController, @Controller, @Service, @Repository - (used for bean creation)
+   basic Annotaion - @Value, @Autowired, @Primary, @Autowired with @Qualifier, @Resource
+25.@Autowired vs @Resourse - precidance order need to be understand  
+25.NoUniqueBeanDefinitionException - When there are two beans of the same type in the Spring container, and you try to autowire by type, Spring gets confused because it doesn't know which one to inject // Hi Priyanka I will explain you this Part
+26.The try-with-resources statement in Java is a special kind of try statement that automatically closes resources used within the try block when the block terminates. This feature was introduced in Java 7 to simplify resource management and to help avoid resource leaks, such as file handles or database connections that are not properly closed.
+
+27.response status code for http method 
+200 - OK: The request has succeeded.
+201 - Created: The request has been fulfilled and a new resource has been created.
+204 - No Content: The server has successfully fulfilled the request but there is no content to send back.
+400 - Bad Request: The server cannot or will not process the request due to a client error.
+401 - Unauthorized: The request requires authentication and the client credentials are missing or incorrect.
+403 - Forbidden: The server understood the request but refuses to authorize it.
+404 - Not Found: The requested resource could not be found on the server.
+405 - Method Not Allowed: The HTTP method used is not supported for the requested resource.
+500 - Internal Server Error: The server encountered an unexpected condition that prevents it from fulfilling the request.
+503 - Service Unavailable: The server is currently unable to handle the request due to temporary overloading or maintenance.
+
+28- how to secure rest api -using Spring security
+29 - Functional interface
+30 - predefined functional Interface - Predicate, Function, Supplier, Consumer
+31 - stream() vs parralel stream()
+32 - map() - return Stream  vs FaltMap()- returns list of Streams
+33 - why password using character not sring //Strings are immutable in Java and therefore if a password is stored as plain text it will be available in memory until Garbage collector clears it and as Strings are used in the String pool for re-usability there are high chances that it will remain in memory for long duration
+
+34.  intern method //String s1=new String("hello");  
+                 String s2="hello";  
+                 String s3=s1.intern();//returns string from pool, now it will be same as s2 
+				 
+35. how to make immutable class //useing final keyword
+36.  what is clonning and types //clone() method and by useing copy constructor
+37.  one to many mapping
+38.  spring profile //Spring Profiles provide a way to segregate parts of your application configuration and make it only available in certain environments.
+39. not serialisable exception//When an object is not implement the Serializable interface
+40. Spring  bean life cyccle - (creation, Managing an ddeletion of Bean is Taken care by Spring Container)
+41. webFlex  - it is librabry to use RestTemplate and webClents for Making HTTP calls
+42. RestTemplate - Blocking Threads
+43. Webclient Non blocking threads
+44. Operating on Stream(), is it thread safe? Yes
+45. What are starters required for web application? - Spring boot Starter web
+46. optional interface and its method
+47.Runtime vs compile time exception
+48. constructor overloading-constructor iwth same name but different paramters -- havaa multiple constructor same as mehtod overloading
+49.backward compatilabilty in java is achieved using default method
+50.save vs persist
+
+51. JWT - When a user logs in, generate a unique token (such as a JWT token) and store it in the server-side database along with the user's information.
+Set the token as a cookie in the response header when the user logs in or signs up.
+When subsequent requests are made from the client to the server, include the token in the request headers. This can be done by setting the token in the "Authorization" header with a value like "Bearer {token}".
+Validate the token on the server-side for each request. If the token is valid, allow access to the API endpoints.
+
+52.Statefull vs stateless Authentication
+
+53. differenc between stack vd heap
+
+56. What are path parameter and Query parameter? //path parameter - are used to identify a specific resource, Query parameter - are used to filter and sort
+http:/javacourse/ourse/1123?price=56
+---------------  ----  ----  --------
+endpoint         source path? queryparamter
+
+startswith/-path paramter
+starts with ?-Query parameter
+
+how used why?path/Quer paramter
+
+57.In concurrenthashmap, how get works?
+Older versions of ConcurrentHashMap (pre-Java 8) used a segmented locking mechanism, where the map was divided into segments, each functioning as an independent hash table with its own lock. 
+This allowed higher concurrency because only the segment containing the particular key would be locked during updates
+
+58.Collection - is used to Represent Group of elements together
+58.stream - is used to process collection
+
+----------------------------------------------------------------
+
+Problematic interview Questions in Java
+-------------------------------------
+//create an Employee Class first
+Class Employee{
+  //fields,
+  //constructor,
+  //getters and setters
+}
+--------------------------------------------------------------------------------------------------
+Sort Employees Assending
+List<Employee> emplist=Arrays.asList(new Employee("Priyanka",26,100000,Vishak),new Employee(),new Emploee()) 
+List<Employee> list=emplist.stream().sorted(Comparator.Comparator(Employee::GetSalary)).toList();
+----------------------------------------------------------------------------------------------------
+Sort Employees descending
+List<Employee> list=emplist.stream().sorted(Comparator.reverseOrder(Employee::GetSalary)).toList();
+----------------------------------------------------------------------------------------------------
+filter employees with age more than 40;
+List<Employee> list=emplist.stream().filter(1->e.getAge()>40).toList();
+----------------------------------------------------------------------------------------------------
+Second Highest Salary
+Employee emp=emplist.stream().sorted(Comparator.reverseOrder(Employee::GetSalary)).distinct().limit(2).Skip(1).findFirst().get();
+----------------------------------------------------------------------------------------------------
+find count of number in the list like [1=2, 2=3, 3=1,4=3]
+List<Integer> l=Arrays.asList(1,2,1,3,2,3,3,4,4,4);
+Map<Integer,Long> mapref=tream().collect(Collectors.groupingBy(Function.Identity(), Collectors.counting());
+//find number whose count is equal to 1
+int num=mapref.entrySet().filter(i->i.getValue()==1).map(i->i.getKey()).FindFirst().get();
+----------------------------------------------------------------------------------------------------
+
+find count of String in the list like [Priyanka=2, Antony=1, Shailaja=1,Immanuel=3]
+List<String> l=Arrays.asList(Antony,Priyanka,Priyanka,Shailaja,Immanuel,Immanuel,Immanuel);
+Map<String,Long> mapref=l.stream().collect(Collectors.groupingBy(Function.Identity(), Collectors.counting());
+//find names whose count is equal to 1
+String name=mapref.entrySet().filter(i->i.getValue()==1).map(i->i.getKey()).FindFirst().get();
+----------------------------------------------------------------------------------------------------
+group Employees from different citys
+Map<City,List<Employee>> empBasedOnCity=emplist.stream().collect(Collectors.groupingBy(Emploee::getCity));
+----------------------------------------------------------------------------------------------------
+Average employee salary in based on city
+Map<City,Double>AvgofSalaryBasedOnCity=emplist.stream().collect(Collectors.groupingBy(Emploee::getCity),Collectors.AveragingDouble(Employee::getSalary));
+----------------------------------------------------------------------------------------------------
+find Smallest Missing number  // this question had been asked to me multiple times in the interviews
+int [] arr={1,2,4,3,7,6};
+Arrays.sort(arr);
+int min=arr[0];
+int Smallest_missing_number="0"
+for(int j=0;i<arr.length;j++){
+  if(arr[j]==min){
+     min++;
+  }else{
+   Smallest_missing_number=min;
+   break;
+  }
+}
+System.out.println(Smallest_missing_number);
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

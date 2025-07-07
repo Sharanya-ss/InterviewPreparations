@@ -1,0 +1,35 @@
+
+Microservices Design Patterns
+
+1.Aggregator
+2.API Gateway
+3.Chained (or Chain of Responsibility)
+4.Asynchronous Messaging
+5.Database
+6. Event Sourcing
+7.Branch Pattern
+8.Command Query Responsibility Segregation (CQRS)
+9.Circuit Breaker
+10.Decomposition Design
+
+
+Notes:
+
+key strategies include establishing robust authentication and authorization, securing communication with TLS and mTL3 protocols, prioritizing container security, implementing centralized monitoring, having an effective incident response plan, and regularly reviewing security measures
+
+it's essential to set up authentication and authorization. Authentication checks user identity. Authorization grants access rights to a user or machine.
+
+Authentication and authorization act like guards, controlling who can do what on a system. This is especially important in microservices because each service can have vulnerabilities.
+
+Securing microservices with clear communication channels strengthens a network. Picture each microservice as a fort and their connections as bridges. Encrypted data travels across these bridges using transport layer security (TLS), which keeps private data safe.
+
+Mutual TLS (MTLS) verifies the identity of both parties in a network connection and is vital to microservices security.
+
+Implement centralized monitoring
+
+Keep a close eye on your microservices by combining logging and monitoring. This will provide a clearer view of the system and help you locate security issues faster. Use monitoring tools like Prometheus for metrics collection and Grafana for visualization, or use comprehensive solutions like New Relic and Datadog to catch and address security concerns before they become critical. These tools aid in real-time monitoring and help analyze trends and patterns for proactive security management.
+
+An API gateway acts as the main entrance to the system and helps manage security more effectively. This gateway makes it easier to control access and keeps data secure and private.
+
+15 A gateway also manages the flow of data, helps detect and stop attacks, and ensures that data shared between services is safe, making it crucial for keeping your microservices secure.
+
