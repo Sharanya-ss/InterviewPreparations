@@ -19,7 +19,7 @@ public class A_Binarysearch {// time complexity log(n)
 		int mid=(start_index+end_index)/2;
 		if (target<arr[mid]) {
 			 end_index=mid-1;
-		} else if(target>arr[mid]){
+		} else if(target>arr[mid]){//5>3
              start_index=mid+1;
 		}else {
 			System.out.println("targtet index of "+target+" is : "+mid);

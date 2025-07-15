@@ -1238,3 +1238,13 @@ getBytes() -> String into charcode Array
 Password hashing: Often used with techniques like salting to securely store passwords.
 
 Collision resistance: It should be extremely difficult to find two different inputs that produce the same hash (a "collision").
+
+
+-----------------------------------------------------------------------------------
+If you use an redis Cahce in your application, How will you ensure the data in the all cache regions were up to date -- we can use an Cron job or batch- we can call the @cachable methods 5 mins onse, so the value will be up to date and this increase performance
+
+------------------
+one to many relation between teacher and student, how we can use @lazy or fetch lazy to improve the performance
+
+-------
+temporable in java Script
