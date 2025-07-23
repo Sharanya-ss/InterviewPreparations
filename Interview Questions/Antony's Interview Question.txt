@@ -1248,3 +1248,14 @@ one to many relation between teacher and student, how we can use @lazy or fetch 
 
 -------
 temporable in java Script
+
+-------
+To compare two double variables in Java, you should not use == directly due to potential floating-point precision errors. Instead, compare them using a small tolerance (epsilon).
+
+ double epsilon = 1e-9; — What It Means
+epsilon is a small number used to compare two double values safely.
+
+---------
+
+What is Metaspace?
+Metaspace is the memory space in Java 8 and later used for storing class metadata, such as class structure, methods, fields, annotations, etc. It is not part of the Java heap.

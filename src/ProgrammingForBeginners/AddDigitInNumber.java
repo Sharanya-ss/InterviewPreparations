@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class AddDigitInNumber {
 	public static void main(String[] args) {
 		        Scanner sc = new Scanner(System.in);
-		        int n = sc.nextInt(); // enter 123 as input
-		        int sum = 0;
+		        var n = sc.nextInt(); // enter 123 as input
+		        var sum = 0;
 		        int r = 0;
 
 		        /*

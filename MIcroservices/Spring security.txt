@@ -1,0 +1,175 @@
+// 1. AppUser.java
+package com.example.taxi.security;
+
+import jakarta.persistence.*;
+import java.util.List;
+
+@Entity
+public class AppUser {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+    private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
+
+    public AppUser() {}
+
+    public AppUser(Long id, String username, String password, List<String> roles) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public List<String> getRoles() { return roles; }
+    public void setRoles(List<String> roles) { this.roles = roles; }
+} 
+
+// 2. AppUserRepository.java
+package com.example.taxi.security;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+public interface AppUserRepository extends JpaRepository<AppUser, Long> {
+    Optional<AppUser> findByUsername(String username);
+}
+
+// 3. CustomUserDetailsService.java
+package com.example.taxi.security;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Service;
+
+import java.util.stream.Collectors;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private AppUserRepository userRepo;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        AppUser user = userRepo.findByUsername(username)
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        return new User(user.getUsername(), user.getPassword(),
+                user.getRoles().stream()
+                    .map(SimpleGrantedAuthority::new)
+                    .collect(Collectors.toList()));
+    }
+}
+
+// 4. SecurityConfig.java
+package com.example.taxi.security;
+
+import org.springframework.context.annotation.*;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.*;
+import org.springframework.security.crypto.bcrypt.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableMethodSecurity
+public class SecurityConfig{
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .authorizeHttpRequests()
+                .requestMatchers("/api/bookings/**").hasRole("USER")
+                .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .and()
+            .httpBasic();
+        return http.build();
+    }
+
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http, CustomUserDetailsService userDetailsService) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+            .userDetailsService(userDetailsService)
+            .passwordEncoder(passwordEncoder())
+            .and()
+            .build();
+    }
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+}
+
+// 5. UserInitializer.java
+package com.example.taxi.security;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import java.util.List;
+
+@Configuration
+public class UserInitializer {
+
+    @Bean
+    CommandLineRunner initUsers(AppUserRepository repo, PasswordEncoder encoder) {
+        return args -> {
+            if (repo.findByUsername("user").isEmpty()) {
+                repo.save(new AppUser(null, "user", encoder.encode("password"), List.of("ROLE_USER")));
+            }
+            if (repo.findByUsername("admin").isEmpty()) {
+                repo.save(new AppUser(null, "admin", encoder.encode("admin123"), List.of("ROLE_ADMIN")));
+            }
+        };
+    }
+}
+-------------------------------
+
+@RestController
+@RequestMapping("/api/bookings")
+public class BookingController {
+
+    @Autowired
+    private BookingService bookingService;
+
+    @PreAuthorize("hasRole('USER')")
+    @PostMapping
+    public ResponseEntity<?> bookTaxi(@RequestBody BookingRequestDTO request) {
+        return bookingService.bookTaxi(request);
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping
+    public ResponseEntity<?> getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAllBookings());
+    }
+
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+    @PutMapping("/status/{bookingId}/{status}")
+    public ResponseEntity<?> updateStatus(@PathVariable int bookingId, @PathVariable String status) {
+        return bookingService.updateStatus(bookingId, status);
+    }
+}

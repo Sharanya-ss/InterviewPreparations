@@ -7,7 +7,7 @@ class ArrayList<T> implements Iterable<T> {
     T[] arr;
     int size;
     int capacity;
-    static final int initialcapacity = 3;
+    static final int initialcapacity = 8;
 
     @SuppressWarnings("unchecked")
     ArrayList() {
@@ -21,7 +21,7 @@ class ArrayList<T> implements Iterable<T> {
         if (size == capacity) {
             expadArray();
         }
-        arr[size++] = val;
+        arr[size++] = val;//0
     }
 
     // private expandArray
@@ -38,7 +38,7 @@ class ArrayList<T> implements Iterable<T> {
     }
 
     // insert at pos
-    public void insertAtpos(int pos, T val) {
+    public void insertAtpos(int pos, T val) {//2
         if (pos < 0 || pos > size) {
             throw new IndexOutOfBoundsException("invalid pos");
         }

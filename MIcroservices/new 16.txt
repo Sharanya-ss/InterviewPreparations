@@ -1,0 +1,76 @@
+In Spring (and other Java frameworks like Jakarta EE), the @Transactional annotation is used to manage transactions declaratively. This means you don’t have to manually begin, commit, or roll back a transaction — Spring handles it for you.
+
+✅ Basic Usage of @Transactional
+java
+Copy
+Edit
+@Service
+public class PaymentService {
+
+    @Autowired
+    private PaymentRepository paymentRepository;
+
+    @Transactional
+    public void processPayment(Payment payment) {
+        paymentRepository.save(payment);
+        // other DB operations...
+
+        // if any exception is thrown, transaction will rollback
+    }
+}
+🔍 How It Works
+Spring creates a proxy around the method.
+
+If the method completes normally, Spring commits the transaction.
+
+If a runtime exception (unchecked) is thrown, Spring rolls back the transaction.
+
+⚙️ Transactional Attributes
+You can fine-tune transaction behavior using these attributes:
+
+Attribute	Description
+propagation	Defines how transactions relate (see below).
+isolation	Level of DB isolation to avoid dirty reads, etc.
+readOnly	Optimizes queries that don’t modify data.
+timeout	Max time before rollback.
+rollbackFor	Defines exception types that trigger rollback.
+noRollbackFor	Defines exception types that do NOT trigger rollback.
+
+Example:
+
+java
+Copy
+Edit
+@Transactional(
+  propagation = Propagation.REQUIRED,
+  isolation = Isolation.READ_COMMITTED,
+  timeout = 30,
+  rollbackFor = {SQLException.class}
+)
+🔄 Propagation Types (Important)
+Type	Description
+REQUIRED	Uses existing transaction if available; otherwise, creates a new one (default).
+REQUIRES_NEW	Always creates a new transaction, suspending the current one.
+SUPPORTS	Joins existing transaction, if any; otherwise runs non-transactionally.
+NOT_SUPPORTED	Suspends existing transaction, runs non-transactionally.
+MANDATORY	Must run within a transaction; throws exception if none exists.
+NEVER	Must not run within a transaction.
+NESTED	Starts a nested transaction within the existing one (uses savepoints).
+
+🔒 Isolation Levels
+Level	Description
+READ_UNCOMMITTED	Lowest level – can see uncommitted changes (dirty read).
+READ_COMMITTED	Can't read uncommitted changes (default in many DBs).
+REPEATABLE_READ	Same query returns same results within transaction.
+SERIALIZABLE	Highest isolation – fully locks data to avoid anomalies.
+
+✅ Best Practices
+Use @Transactional only on public methods (proxy limitation).
+
+Use it in service layer, not controller.
+
+Don’t annotate private or internal methods; Spring AOP won’t apply it.
+
+Prefer rollbackFor = CustomException.class if you're using checked exceptions.
+
+Would you like a working Spring Boot example with rollback and nested transactions?

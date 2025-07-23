@@ -1,7 +1,8 @@
 import React from 'react'
 
 function Child() {
-  return (
+  //js
+  return (//html js + html=jsx Es7
     <div>
       <h1> Priyanka Hello, World!</h1>
     </div>
