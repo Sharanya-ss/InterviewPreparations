@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 public class ATNT {
 	public static void main(String[] args) {
 		List<String> names = Arrays.asList("rohit", "urmila", "rohit", "urmila", "ram", "sham", "sita", "gita");
+		names.stream().sorted(Comparator.comparing(String::valueOf)).toList().forEach(System.out::println);;
 		Map<String,Long> namesfreq=names.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
 		System.out.println(namesfreq);
 		
