@@ -10,7 +10,7 @@ npm i
  npm install -g create-react-app
 ------------------------------------------------
 //creating react app
-npx create-react-app priyankaApp
+npx create-react-app krishna
 --------------------------------------------------
 install basic extenstions like
 react ES7

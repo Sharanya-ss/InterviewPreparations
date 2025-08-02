@@ -202,7 +202,38 @@ for(int j=0;i<arr.length;j++){
 }
 System.out.println(Smallest_missing_number);
 ----------------------------------------------------------------------------------------------------
+1-> Microservice architecture explanation
+2-> How to create springboot microservice from scratch in detail
+3-> JWT token and details explanation and implementation.
+4-> how to handle, debug and fix issue in production, after prod. deployment client is facing 404 exception.
+5-> String str="who is your best friend", sort each words in string by comparing first character.
+output="best friend is who your".
+6-> how to convert and migrate monolythic application to microservices architecture and what are the benifits.
+7-> If client is requesting for large data records via rest api then how to handle it and provide quick response.
+8-> Spring Security implementation in api gateway.
+9-> How to validate jwt token expiry( mutiple time asked in details about security implimentation)
+10-> How SpringBoot project is setup and CI/CD integration and configuration.
+---------------------------------------------------------------------------------------------
 
+These are the questions asked for me
+
+Build Rest API, Junit and Mockito example
+Where I was asked to write Controller, Service and DB Layer
+By using Streams and filter the records and Sorting the UDT by field
+
+Design Pattern that I have used
+
+POM and it's scope
+
+Git merge and Rebase
+
+Method Overloading and Overrding Difference
+
+Advantage of Overiding a method
+
+How to Make class as Immutable ? Other than Final
+
+How to troubleshoot a web application
 
 
 
